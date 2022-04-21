@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Go Gadget</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+      <style>
+          body        { padding-top:70px; }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+         
+          <h1 class="text-success  text-center"><span class="fa fa-user"></span> Welcome!</h1>
+          <div class="row">
+            <div class="col-sm-6">
+                <div id="well"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const getData = async ()=> {
+        let token = document.URL.split("#")[1].split("=")[1].split("&")[0]
+        let res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo?access_token=" + token)
+        let data = await res.json()
+        console.log(data)  // Left console log for demo purposes
+        document.getElementById("well").innerHTML = `  
+                        <img src='${data["picture"]}'/>
+                        <p>
+                           <strong>Email</strong>: ${data["email"]}<br>
+                           <strong>Name</strong>: ${data["name"]}
+                        </p>
+                       `
+      }
+      getData()
+    </script>
+  </body>
+</html>
