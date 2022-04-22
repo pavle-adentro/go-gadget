@@ -28,7 +28,6 @@ func main() {
 	r.HandleFunc("/", handlers.HomeHandler).Methods("GET")
 	r.HandleFunc("/auth/{provider}", handlers.AuthHandler).Methods("GET")
 	r.HandleFunc("/auth/{provider}/callback", handlers.AuthCallBackHandler).Methods("GET")
-	// r.Handle("/images/", http.StripPrefix("/images", http.FileServer(http.Dir("./images"))))
 
 	srv := &http.Server{
 		Addr:         "127.0.0.1:" + strconv.Itoa(port),
